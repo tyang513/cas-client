@@ -1,23 +1,22 @@
 <main>
     <div class="first-level"></div>
     <div class="content">
-        <!--{{tableList}}-->
         <div class="shadow-content">
             <div class="content-body">
                 <div class="content-table">
-                    <!--<nz-table #userTable [nzData]="tableList" [nzFrontPagination]="false">-->
-                        <!--<thead>-->
-                        <!--<tr>-->
-                            <!--<th>获取结果</th>-->
-                        <!--</tr>-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-                        <!--<tr *ngFor="let data of userTable.data">-->
-                            <!--<td title="{{data}}">{{data}}</td>-->
-                        <!--</tr>-->
-                        <!--</tbody>-->
-                    <!--</nz-table>-->
-                    {{tableList}}
+                    <nz-table #userTable [nzData]="tableList" [nzFrontPagination]="false"
+                    [nzHideOnSinglePage]="true" >
+                        <thead>
+                        <tr>
+                            <th>获取结果</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let data of userTable.data">
+                            <td title="{{data}}">{{data}}</td>
+                        </tr>
+                        </tbody>
+                    </nz-table>
                 </div>
             </div>
         </div>

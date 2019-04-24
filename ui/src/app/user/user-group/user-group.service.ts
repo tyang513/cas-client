@@ -17,9 +17,17 @@ export class UserGroupService extends CurdService {
         let url = `${this.baseUrl}/hello`;
         const obj = {};
         obj['Content-Type'] = 'application/json';
-
         return this.http.get(url,{headers: new HttpHeaders(obj),responseType: 'text'}).pipe(
           catchError(this.handleError)
+        );
+    }
+
+    getUser(params?: any) {
+        let url = `${this.baseUrl}/getUser`;
+        const obj = {};
+        obj['Content-Type'] = 'application/json';
+        return this.http.get(url,{headers: new HttpHeaders(obj),responseType: 'text'}).pipe(
+            catchError(this.handleError)
         );
     }
 }

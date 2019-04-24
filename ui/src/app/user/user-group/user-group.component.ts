@@ -24,7 +24,10 @@ export class UserGroupComponent extends BaseComponent implements OnInit {
     // 高级搜索 返回列表数据
     advancedSearchList() {
         this.userGroupService.getHello().subscribe(response => {
-            this.tableList = response;
+            this.tableList.push(response);
+        });
+        this.userGroupService.getUser().subscribe(response => {
+            this.tableList.push(response);
         });
     }
 }

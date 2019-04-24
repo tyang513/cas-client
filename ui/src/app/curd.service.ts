@@ -71,7 +71,6 @@ export class CurdService {
    * @param data
    */
   protected redirect(data: any) {
-    // debugger
       document.location.href =
         `${data.service}${document.location.origin}${data.redirect}`+
         document.location.href;
