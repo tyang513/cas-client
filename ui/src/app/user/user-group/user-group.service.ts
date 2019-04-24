@@ -1,8 +1,9 @@
 import {Injectable, Injector} from '@angular/core';
 import {CurdService} from '../../curd.service';
-import {Observable} from "rxjs/index";
 import {catchError} from "rxjs/internal/operators";
-import {error} from "util";
+import {
+    HttpHeaders
+} from '@angular/common/http';
 
 @Injectable()
 export class UserGroupService extends CurdService {
@@ -14,7 +15,10 @@ export class UserGroupService extends CurdService {
 
     getHello(params?: any) {
         let url = `${this.baseUrl}/hello`;
-        return this.http.get(url,params).pipe(
+        const obj = {};
+        obj['Content-Type'] = 'application/json';
+
+        return this.http.get(url,{headers: new HttpHeaders(obj),responseType: 'text'}).pipe(
           catchError(this.handleError)
         );
     }

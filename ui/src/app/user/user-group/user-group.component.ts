@@ -8,31 +8,23 @@ import {BaseComponent} from '../../common/base-component';
     styleUrls: ['./user-group.component.less'],
     providers: [UserGroupService]
 })
-export class UserGroupComponent extends BaseComponent implements OnInit, OnChanges {
+export class UserGroupComponent extends BaseComponent implements OnInit {
 
-    tableList: any; // 列表数据
+    tableList: any = []; // 列表数据
 
     constructor(public userGroupService: UserGroupService,
                 private injector: Injector,
                 public changeDetectorRef: ChangeDetectorRef) {
         super(injector);
-        const that = this;
     }
     ngOnInit() {
-        const that = this;
-        that.advancedSearchList();
-
+        this.advancedSearchList();
     }
 
     // 高级搜索 返回列表数据
     advancedSearchList() {
-        const that = this;
-        that.userGroupService.getHello().subscribe((response: any) => {
-            if (response.code === 200) {
-                that.tableList = response.data;
-            }else{
-                this.message.create('error', response.message);
-            }
+        this.userGroupService.getHello().subscribe(response => {
+            this.tableList = response;
         });
     }
 }
