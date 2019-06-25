@@ -46,7 +46,7 @@ export class CurdService {
    */
   public handleError(error: any) {
     if (error.status == 401 || error.status == 403) {
-      CurdService.that.redirect(error['error']);
+      CurdService.that.redirect(JSON.parse(error['error']));
       return throwError('登录超时。');
     } else {
       let err: string;
@@ -70,10 +70,13 @@ export class CurdService {
    * 跳转登录
    * @param data
    */
-  protected redirect(data: any) {
+  public redirect(data: any): void {
+      //  根据不同环境配置不同 URL
+      console.log(`${data.service}${document.location.origin}${data.redirect}`+
+          document.location.href);
       document.location.href =
-        `${data.service}${document.location.origin}${data.redirect}`+
-        document.location.href;
+          `${data.service}${document.location.origin}${data.redirect}`+
+          document.location.href;
   }
 
     /**

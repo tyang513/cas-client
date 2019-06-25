@@ -21,10 +21,10 @@ logging:
 # SSO 配置
 cas:
   service:
-    login: http://172.23.5.160:50080/sso/login
-    logout: http://172.23.5.160:50080/sso/logout
+    login: http://localhost:8080/sso/login
+    logout: http://localhost:8080/sso/logout
   url:
-    prefix: http://172.23.5.160:50080/sso
+    prefix: http://localhost:8080/sso
 app:
   service:
     security: http://localhost:8081/cas-client/login/cas
@@ -34,4 +34,4 @@ um:
   rmi:
     service:
       SecurityService:
-        url: http://172.23.5.160:50080/console-api/remoting/SecurityService
+        url: http://172.23.7.166:9290/console-api/remoting/SecurityService
