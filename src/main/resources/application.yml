@@ -13,22 +13,22 @@ spring:
 logging:
   path: ./logs
   level:
-    root : info
+    root : debug
     org.jasig : debug
-
-
+    sun.rmi : info
+    org.eclipse.jetty : info
 
 # SSO 配置
 cas:
   service:
-    login: http://localhost:8080/sso/login
-    logout: http://localhost:8080/sso/logout
+    login: http://172.23.7.166:9293/sso/login
+    logout: http://172.23.7.166:9293/sso/logout
   url:
-    prefix: http://localhost:8080/sso
+    prefix: http://172.23.7.166:9293/sso
 app:
   service:
-    security: http://localhost:8081/cas-client/login/cas
-    home: http://localhost:8081/cas-client
+    security: http://localhost:8083/cas-client/login/cas
+    home: http://localhost:8083/cas-client
 
 um:
   rmi:

@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationContextInitializer=com.talkingdata.security.config.SecurityContextInitializer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.talkingdata.autoconfigure.AppBuilderSecurityAutoConfiguration
