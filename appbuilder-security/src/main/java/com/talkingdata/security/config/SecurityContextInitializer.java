@@ -46,7 +46,7 @@ public class SecurityContextInitializer
      */
     @Override
     public void initialize(ConfigurableApplicationContext context) {
-        logger.info("初始化sso配置项");
+        logger.info("初始化sso配置项并进行校验");
         ConfigurableEnvironment environment = context.getEnvironment();
 
         String ssoService = environment.getProperty(CAS_SREVICE_LOGIN);
