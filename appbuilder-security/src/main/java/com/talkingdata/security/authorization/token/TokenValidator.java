@@ -15,13 +15,19 @@ public class TokenValidator {
     /**
      * cas url prefix, exp : http://cas.example.com/sso
      */
-    private String casUrlPrefix;
+    private final String casUrlPrefix;
 
     public TokenValidator(String casUrlPrefix) {
         this.casUrlPrefix = casUrlPrefix;
     }
 
-    public void validate(String token, String service) throws TokenValidationException{
+    public void validate(String token) throws TokenValidationException{
+
+        String url = casUrlPrefix + "/token?token=" + token;
         logger.info("验证token正确性 token : {}", token);
+
     }
+
+
+
 }

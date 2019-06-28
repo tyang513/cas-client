@@ -27,8 +27,8 @@ cas:
     prefix: http://172.23.7.166:9293/sso
 app:
   service:
-    security: http://localhost:8083/cas-client/login/cas
-    home: http://localhost:8083/cas-client
+    security: http://localhost:8081/cas-client/login/cas
+    home: http://localhost:8081/cas-client
 
 um:
   rmi:

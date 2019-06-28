@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * AppBuilder Secutiry Auto Configuration
+ * AppBuilder Security Auto Configuration
  * @author tao.yang
  * @date 2019-06-26
  */
