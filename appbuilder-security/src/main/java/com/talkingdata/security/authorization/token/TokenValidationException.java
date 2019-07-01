@@ -1,10 +1,12 @@
 package com.talkingdata.security.authorization.token;
 
+import org.springframework.security.core.AuthenticationException;
+
 /**
  * @author tao.yang
  * @date 2019-06-26
  */
-public class TokenValidationException extends Exception {
+public class TokenValidationException extends AuthenticationException {
 
     /**
      * Unique Id for Serialization
@@ -28,14 +30,5 @@ public class TokenValidationException extends Exception {
      */
     public TokenValidationException(final String string, final Throwable throwable) {
         super(string, throwable);
-    }
-
-    /**
-     * Constructs an exception with the chained throwable.
-     *
-     * @param throwable the original exception.
-     */
-    public TokenValidationException(final Throwable throwable) {
-        super(throwable);
     }
 }

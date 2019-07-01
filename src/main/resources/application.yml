@@ -20,6 +20,9 @@ logging:
 
 # SSO 配置
 cas:
+  intranet:
+    url:
+      prefix : http://localhost:9097/sso
   service:
     login: http://172.23.7.166:9293/sso/login
     logout: http://172.23.7.166:9293/sso/logout

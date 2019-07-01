@@ -1,6 +1,7 @@
 package com.talkingdata.security.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -15,6 +16,9 @@ public class SecurityConfig {
      */
     @Value("${cas.url.prefix}")
     private String casUrlPrefix;
+
+    @Value("${cas.intranet.url.prefix}")
+    private String casIntranetUrlPrefix;
 
     /**
      * cas.service.login
@@ -33,7 +37,6 @@ public class SecurityConfig {
      */
     @Value("${app.service.security}")
     private String appServiceSecurity;
-
     /**
      * app.service.home
      */
@@ -56,6 +59,14 @@ public class SecurityConfig {
 
     public void setCasUrlPrefix(String casUrlPrefix) {
         this.casUrlPrefix = casUrlPrefix;
+    }
+
+    public String getCasIntranetUrlPrefix() {
+        return casIntranetUrlPrefix;
+    }
+
+    public void setCasIntranetUrlPrefix(String casIntranetUrlPrefix) {
+        this.casIntranetUrlPrefix = casIntranetUrlPrefix;
     }
 
     public String getCasServiceLogin() {

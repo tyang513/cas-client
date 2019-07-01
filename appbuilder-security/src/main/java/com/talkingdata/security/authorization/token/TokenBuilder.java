@@ -1,6 +1,6 @@
 package com.talkingdata.security.authorization.token;
 
-import org.jasig.cas.client.util.CommonUtils;
+import com.talkingdata.security.util.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,6 @@ public class TokenBuilder {
     }
 
     /**
-     *
      * @param serviceTicket
      * @param userName
      * @return
@@ -47,23 +46,16 @@ public class TokenBuilder {
     }
 
     /**
-     *
      * @param serviceTicket
      * @param userName
      * @return
      */
-    private String constructUrl(String serviceTicket, String userName){
+    private String constructUrl(String serviceTicket, String userName) {
         try {
-            return casUrlPrefix + (casUrlPrefix.endsWith("/") ? "" : "/") + "token/" + serviceTicket + "?service=" + URLEncoder.encode(appServiceHome, "UTF-8") + "&userName=" + userName;
-        }
-        catch (final UnsupportedEncodingException e){
+            return casUrlPrefix + (casUrlPrefix.endsWith("/") ? "" : "/") + "apb/token/" + serviceTicket + "?service=" + URLEncoder.encode(appServiceHome, "UTF-8") + "&userName=" + userName;
+        } catch (final UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        TokenBuilder builder = new TokenBuilder("http://172.30.112.192:9097/sso", "http://172.30.112.192:8083/cas-client");
-        builder.build("ST-1-k8yGG8aqnP7JpN-6NR4n2z32J2Qyangtao", "um_super_admin");
     }
 
 }

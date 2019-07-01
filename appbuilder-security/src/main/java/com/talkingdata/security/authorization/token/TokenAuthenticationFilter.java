@@ -22,20 +22,6 @@ import java.io.IOException;
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     /**
-     * token验证器
-     */
-    private TokenValidator tokenValidator;
-
-    /**
-     * 默认的构造函数
-     *
-     * @param tokenValidator
-     */
-    public TokenAuthenticationFilter(TokenValidator tokenValidator) {
-        this.tokenValidator = tokenValidator;
-    }
-
-    /**
      * 日志
      */
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
@@ -50,7 +36,6 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             String token = safeGetToken(request, TokenAuthentication.TOKEN);
             if (token != null && !"".equals(token)) {
                 logger.info("进行token认证,获取token {}", token);
-
                 Authentication auth = new TokenAuthentication(null, token);
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 request.setAttribute("com.talkingdata.security.authorization.token.TokenAuthenticationFilter.FILTERED", true);

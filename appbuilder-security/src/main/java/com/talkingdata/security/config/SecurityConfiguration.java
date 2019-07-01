@@ -12,8 +12,10 @@ import com.talkingdata.security.authorization.cas.RememberWebAuthenticationDetai
 import com.talkingdata.security.authorization.cas.UserDetailsServiceImpl;
 import com.talkingdata.security.authorization.token.TokenAuthenticationFilter;
 import com.talkingdata.security.authorization.token.TokenAuthenticationProvider;
+import com.talkingdata.security.authorization.token.TokenBuilder;
 import com.talkingdata.security.authorization.token.TokenExceptionTranslationFilter;
 import com.talkingdata.security.authorization.token.TokenValidator;
+import com.talkingdata.security.util.CommonUtils;
 import org.jasig.cas.client.validation.Cas20ServiceTicketValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -301,7 +303,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     protected TokenAuthenticationFilter createTokenAuthenticationFilter(){
-        return new TokenAuthenticationFilter(createTokenValidator());
+        return new TokenAuthenticationFilter();
     }
 
     /**
@@ -310,9 +312,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public TokenValidator createTokenValidator(){
-        String casUrlPrefix = securityConfig.getCasUrlPrefix();
+        String casUrlPrefix = CommonUtils.isEmpty(securityConfig.getCasIntranetUrlPrefix()) ? securityConfig.getCasUrlPrefix() : securityConfig.getCasIntranetUrlPrefix();
         logger.info("创建TokenValidator cas.url.prefix = ", casUrlPrefix);
         return new TokenValidator(casUrlPrefix);
+    }
+
+    @Bean
+    public TokenBuilder createTokenBuilder(){
+        String casUrlPrefix = CommonUtils.isEmpty(securityConfig.getCasUrlPrefix()) ? securityConfig.getCasUrlPrefix() : securityConfig.getCasIntranetUrlPrefix();
+        String appServiceHome = securityConfig.getAppServiceHome();
+        logger.info("创建TokenBuilder({},{})", casUrlPrefix, appServiceHome);
+        return new TokenBuilder(casUrlPrefix, appServiceHome);
     }
 
     /**
@@ -322,7 +332,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     protected TokenAuthenticationProvider createTokenAuthenticationProvider() {
-        return new TokenAuthenticationProvider();
+        return new TokenAuthenticationProvider(createTokenValidator());
     }
 
 }
